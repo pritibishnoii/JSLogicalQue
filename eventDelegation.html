@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <ul id="menu">
+        <li id="home">home</li>
+        <li id="about">about</li>
+        <li id="contact">contact</li>
+        <li id="job">job</li>
+    </ul>
+
+
+
+
+    <script>
+
+        let menu = document.getElementById('menu')
+
+        menu.addEventListener('click', (event) => {
+            let target = event.target
+            switch (target.id) {
+
+                case "home":
+                    console.log("home clicked")
+                    break;
+
+                case "about":
+                    console.log("about clicked")
+                    break;
+                case "job":
+                    console.log("job clicekd")
+                    break;
+                case "contatc":
+                    console.log("contat clicked")
+                    break;
+            }
+        })
+    </script>
+</body>
+
+</html>

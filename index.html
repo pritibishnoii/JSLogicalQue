@@ -1,0 +1,180 @@
+<!-- <!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <form action="signup.html" method="post" id="signup">
+        <h1>Sign Up</h1>
+        <div class="field">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your fullname" />
+            <small></small>
+        </div>
+        <div class="field">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" placeholder="Enter your email address" />
+            <small></small>
+        </div>
+        <button type="submit">Subscribe</button>
+    </form>
+
+
+    <script>
+
+        let res = document.forms
+        console.log(res)
+
+        let form = document.getElementById("signup")
+        console.log(form.elements[0])
+        // console.log(form.elements[1])
+        // console.log(form.elements['email'])
+        // console.log(form.elements['name'])
+
+        const name = form.elements['name'];
+        const email = form.elements['email'];
+
+        // getting the element's value
+        let fullName = name.value;
+        let emailAddress = email.value;
+
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Radio Button</title>
+</head>
+
+<body>
+    <p>Select your size:</p>
+    <div>
+        <input type="radio" name="size" value="XS" id="xs">
+        <label for="xs">XS</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="S" id="s">
+        <label for="s">S</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="M" id="m">
+        <label for="m">M</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="L" id="l">
+        <label for="l">L</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="XL" id="xl">
+        <label for="xl">XL</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="XXL" id="xxl">
+        <label for="xxl">XXL</label>
+    </div>
+    <p>
+        <button id="btn">Show Selected Value</button>
+    </p>
+
+    <p id="output"></p>
+
+    <script>
+        const btn = document.querySelector('#btn');
+        const radioButtons = document.querySelectorAll('input[name="size"]');
+        btn.addEventListener("click", () => {
+            let selectedSize;
+            for (const radioBtn of radioButtons) {
+                if (radioBtn.checked) {
+                    selectedSize = radioBtn.value;
+                    break;
+                }
+            }
+            // show the output:
+            output.innerText = selectedSize ? `You selected ${selectedSize}` : `You haven't selected any size`;
+        });
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Radio Button</title>
+</head>
+
+<body>
+    <p>Select your size:</p>
+    <div id="group">
+    </div>
+
+    <p id="output"></p>
+
+    <script>
+        const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
+        // generate the radio groups
+        const group = document.querySelector("#group");
+        group.innerHTML = sizes.map((size) => `<div>
+                <input type="radio" name="size" value="${size}" id="${size}">
+                 <label for="${size}">${size}</label>
+            </div>`).join(' ');
+
+        // add an event listener for the change event
+        const radioButtons = document.querySelectorAll('input[name="size"]');
+        for (const radioButton of radioButtons) {
+            radioButton.addEventListener('change', showSelected);
+        }
+
+        function showSelected(e) {
+            console.log(e);
+            if (this.checked) {
+                document.querySelector('#output').innerText = `You selected ${this.value}`;
+            }
+        }
+    </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Checkboxes</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        const colors = ["Red", "Green", "Blue"];
+        const html = colors
+            .map(
+                (color) => `<label for="color-${color}">
+                <input type="checkbox" name="color" id="color-${color}" value="${color}"> ${color}
+            </label>`
+            )
+            .join(" ");
+        document.querySelector("#root").innerHTML = html;
+    </script>
+</body>
+
+</html>
