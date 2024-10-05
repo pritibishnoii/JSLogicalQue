@@ -15,9 +15,20 @@ class DBL {
   addAtFirst(data) {
     let newNode = new Node(data);
     if (this.head == null) return (this.head = newNode);
-    this.head.prev = newNode.next;
+    newNode.next = this.head;
     this.head.prev = newNode;
     this.head = newNode;
+    this.size++;
+  }
+  addLast(data) {
+    let newNode = new Node(data);
+    if (this.head == null) return (this.head = newNode);
+    let current = this.head;
+    while (current.next != null) {
+      current = current.next;
+    }
+    current.next = newNode;
+    newNode.prev = current;
     this.size++;
   }
 
@@ -36,4 +47,8 @@ let list = new DBL();
 list.addAtFirst(10);
 list.addAtFirst(20);
 list.addAtFirst(30);
+list.printListData();
+
+list.addLast(50);
+list.addLast(60);
 list.printListData();

@@ -29,3 +29,16 @@ console.log(countChar("MissIsiipi", "I"));
 // }
 
 // console.log(countCharr("MissIsiipi", "I"));
+
+function findLongestWord(sentence) {
+  const words = sentence.split(" ");
+  let longest = words[0];
+  console.log(longest);
+  for (let word of words) {
+    if (word.length > longest.length) {
+      longest = word;
+    }
+  }
+  return longest;
+}
+console.log(findLongestWord("The quick brown fox jumps over the lazy dog")); // Output: "jumps"
