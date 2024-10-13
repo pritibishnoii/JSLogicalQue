@@ -166,15 +166,19 @@ function sortArr(arr){
     // return arr.sort((a,b)=>a-b)
     
    for(let i=0;i<arr.length;i++){
-    if(arr[i]>arr[i+1]){
-        let temp= arr[i];
-        arr[i]= arr[i+1];
-        arr[i+1]=temp;
-    }
+        for(let j=i;j<arr.length;j++){
+            if(arr[i]>arr[j]){
+                let temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
    }
     return arr;
 }
-// var arr1 = [ -3, 8, 7, 6, 5, -4, 3, 2, 1 ];
-var arr1 =  [-4,-3,1,2,3,5,6,7,8] ;
+var arr1 = [ -3, 8, 7, 6, 5, -4, 3, 2, 1 ];
+
+// todo -3>8 - -3  [-3]        8>7 - [-3,7,8]   8>6  -  [-3,7,6,8]   8>5 - [-3,7,6,5,8]   8>>-4 [-3,7,6,5,-4]   8>3 - [-3,7,6,5,-4,3,8]    8>2 - [-3,7,6,5,-4,3,2]   8>1 - [-3,7,6,5,-4,3,2,1 ,8]     
+// var arr1 =  [-4,-3,1,2,3,5,6,7,8] ;
 
 console.log(sortArr(arr1))
