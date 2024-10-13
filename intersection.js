@@ -16,6 +16,9 @@ let res= arr1.reduce((accum,currElm)=>{
 console.log(res)
 
 
+let value = 12;
+
+
 
 
 
