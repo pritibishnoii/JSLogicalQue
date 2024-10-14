@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <style>
+      .div {
+        display: flex;
+        margin: 22px auto;
+        padding: 30px;
+      }
+      .div input,
+      button {
+        padding: 12px;
+        margin: 1px;
+        color: black;
+      }
+
+      .main {
+        width: 50%;
+        height: 100vh;
+        background-color: azure;
+        margin: 30px auto;
+        padding: 22px;
+      }
+      p {
+        color: blue;
+        font-size: 2rem;
+        font-weight: 400;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="div">
+        <input type="text" id="input" />
+        <button id="add">Add</button>
+        <button id="dBtn">Display</button>
+      </div>
+      <div id="display"></div>
+    </div>
+
+    <script>
+      const addBtn = document.getElementById("add");
+      const dBtn = document.getElementById("dBtn");
+      const display = document.getElementById("display");
+
+      const arrVal = [];
+      add.addEventListener("click", function () {
+        const inputField = document.getElementById("input");
+        let inputText = inputField.value;
+        arrVal.push(inputText);
+        inputField.value = "";
+      });
+
+      dBtn.addEventListener("click", () => {
+        display.innerHTML = "";
+        arrVal.map((elm, index) => {
+         
+          display.innerHTML += `<p>Element ${index} = ${elm}</p>`;
+          localStorage.setItem("element", display);
+          localStorage.getItem("element");
+        });
+      });
+    </script>
+  </body>
+</html>
