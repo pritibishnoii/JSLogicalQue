@@ -347,10 +347,39 @@ console.log(newSet)
 // - - - - - - - - - - - - -
 // Note : Use ordinal numbers to tell their position.
 
+let o = ["th", "st", "nd", "rd"]
+const color = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow "];
+function num(n) {
+    if (n == 1) return o[1]
+    if (n == 2) return o[2];
+    if (n == 3) return o[3];
+    return o[0];
+
+
+}
+color.forEach((clr, index) => {
+    let position = index + 1;
+    console.log(`${position}${num(position)} choice is ${clr}`)
+})
+
+// console.log(num(1))
+
 
 // todo 17. Write a JavaScript program to shuffle an array.
 // Click me to see the solution
 
+let sArr = [1, 2, 4, 3, 13, 14, 5, 6, 7, 18]
+
+function suffArray(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let random = Math.floor(Math.random() * i)
+        let temp = arr[i]
+        arr[i] = arr[random]
+        arr[random] = temp
+    }
+    return arr
+}
+console.log(suffArray(sArr))
 
 
 
@@ -414,7 +443,29 @@ console.log(results)
 
 
 
-//todo  20. Write a JavaScript program to find duplicate values in a JavaScript array.
+//todo  20. Write a JavaScript program to find duplicate values in a JavaScript array.\
+
+function findDuplicates(arr) {
+    let duplicates = [];
+    let seen = new Set();
+
+    for (let i = 0; i < arr.length; i++) {
+        if (seen.has(arr[i])) {                                  //false - seen{}.has(arr[1])  -false   seen{1}- seen.has(arr[2]) -false
+            if (!duplicates.includes(arr[i])) {
+                duplicates.push(arr[i]);
+            }
+        } else {
+            seen.add(arr[i]);                         //see.add(arr[1])  seeen{1} -- seen.add(arr[2]) -seen{1,2}
+        }
+    }
+
+    return duplicates;
+}
+
+// Example usage:
+let a = [1, 2, 3, 4, 2, 5, 6, 3, 7, 8, 1];
+let duplicateValues = findDuplicates(a);
+console.log("Duplicates:", duplicateValues);
 
 
 
@@ -429,22 +480,192 @@ console.log(results)
 // [1, 2, 3, 4, 5, 6]
 // console.log(flatten([1, [2], [3, [[4]]],[5,6]], true));
 // [1, 2, 3, [[4]], 5, 6]
-let fArr=[1, [2], [3, [[4]]],[5,6]];
-let flat_arr= fArr.flat(3)
+let fArr = [1, [2], [3, [[4]]], [5, 6]];
+let flat_arr = fArr.flat(3)
 console.log(flat_arr);
 
 
-function flatArr(arr){
-    let flated_Arr= [];
+function flatArr(arr) {
+    let flated_Arr = [];
     arr.forEach(element => {
-        if(Array.isArray(element)){
+        if (Array.isArray(element)) {
             flated_Arr = flated_Arr.concat(flatArr(element))
         }
-        else{
+        else {
             flated_Arr.push(element)
         }
     });
-     return flated_Arr
+    return flated_Arr
 }
 console.log(flatArr(fArr))
-console.log(flatArr([1, [2], [3, [[4]]],[5,6]], true));
+console.log(flatArr([1, [2], [3, [[4]]], [5, 6]], true));
+
+
+
+
+//todo  22. Write a JavaScript program to compute the union of two arrays.
+// Sample Data :
+// console.log(union([1, 2, 3], [100, 2, 1, 10]));
+// [1, 2, 3, 10, 100]
+
+
+function U(a1, a2) {
+    // return [...new Set([...a1, ...a2])];
+    // return [...new Set(a1.concat(a2).sort((a,b)=>a-b))]
+    return a1.concat(a2.filter(item => !a1.includes(item)))
+
+}
+console.log(U([1, 2, 3], [100, 2, 1, 10]))
+
+
+//todo  23. Write a JavaScript function to find the difference between two arrays.
+// Test Data :
+// console.log(difference([1, 2, 3], [100, 2, 1, 10]));
+// ["3", "10", "100"]
+// console.log(difference([1, 2, 3, 4, 5], [1, [2], [3, [[4]]],[5,6]]));
+// ["6"]
+// console.log(difference([1, 2, 3], [100, 2, 1, 10]));
+// ["3", "10", "100"]
+
+
+// set([1, 2, 3])   set( [100, 2, 1, 10])
+
+function findDifArr(arr1, arr2) {
+    let flatArr1= arr1.flat(Infinity)
+    let flatArr2= arr2.flat(Infinity)
+    console.log(flatArr1)
+    console.log(flatArr2)
+     let frist =flatArr1.filter(elm=>!flatArr2.includes(elm))      // [3]
+     let second= flatArr2.filter(elm=>!flatArr1.includes(elm))   //[100,10]
+     return [...frist, ...second]             
+}
+console.log(findDifArr([1, 2, 3], [100, 2, 1, 10]))
+console.log(findDifArr([1, 2, 3, 4, 5], [1, [2], [3, [[4]]],[5,6]]))
+
+
+
+// function findDifArr(arr1, arr2) {
+//     // Flatten arrays to handle nested arrays
+//     let flatArr1 = arr1.flat(Infinity);
+//     let flatArr2 = arr2.flat(Infinity);
+  
+//     // Convert arrays to Sets for fast lookup
+//     let set1 = new Set(flatArr1);
+//     let set2 = new Set(flatArr2);
+  
+//     // Find difference: items in set1 but not in set2
+//     let diff1 = [...set1].filter(item => !set2.has(item));
+  
+//     // Find difference: items in set2 but not in set1
+//     let diff2 = [...set2].filter(item => !set1.has(item));
+  
+//     // Combine both differences
+//     return [...diff1, ...diff2];
+//   }
+  
+//   // Test cases:
+//   console.log(findDifArr([1, 2, 3], [100, 2, 1, 10])); // ["3", "100", "10"]
+//   console.log(findDifArr([1, 2, 3, 4, 5], [1, [2], [3, [[4]]], [5, 6]])); // ["6"]
+//   console.log(findDifArr([1, 2, 3], [100, 2, 1, 10])); // ["3", "100", "10"]
+  
+
+
+
+
+// todo 24. Write a JavaScript function to remove. 'null', '0', '""', 'false', 'undefined' and 'NaN' values from an array.
+// Sample array : [NaN, 0, 15, false, -22, '',undefined, 47, null]
+// Expected result : [15, -22, 47]
+
+// todo 26. Write a JavaScript program to find a pair of elements (indices of the two numbers) in a given array whose sum equals a specific target number.
+
+// Input: numbers= [10,20,10,40,50,60,70], target=50
+// Output: 2, 3
+
+function tg(arr, t) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] + arr[j] == t) {
+                return [i, j]
+            }
+        }
+    }
+}
+
+console.log(tg([10, 20, 10, 40, 50, 60, 70], 50))
+
+
+
+// todo 27. Write a JavaScript function to retrieve the value of a given property from all elements in an array.
+// Sample array : [NaN, 0, 15, false, -22, '',undefined, 47, null]
+// Expected result : [15, -22, 47]
+
+
+
+
+
+
+
+
+
+
+
+
+
+//todo  53. Write a JavaScript program to count the number of arrays inside a given array.
+
+// Test Data :
+// ([2,8,[6],3,3,5,3,4,[5,4]]) -> 2
+// ([2,8,[6,3,3],[4],5,[3,4,[5,4]]]) -> 3
+// Expected Output:
+// Number of arrays inside the said array: 2
+// Number of arrays inside the said array: 3
+
+
+
+function countArr(arr) {
+    let count = 0
+    // [2,8,[6],3,3,5,3,4,[5,4]]  //   2,3 a.isArray count ++
+    // let result = arr.filter((a) => Array.isArray(a) ? count + 1 : 0).length;
+    // let result = arr.filter((a) => Array.isArray(a)).length;
+    let result = arr.filter((a) => a.length).length
+    return `Number of arrays inside the said array: ${result}`
+}
+
+console.log(countArr([2, 8, [6], 3, 3, 5, 3, 4, [5, 4]]))
+console.log(countArr([2, 8, [6, 3, 3], [4], 5, [3, 4, [5, 4]]]))
+
+
+
+
+
+//todo  52. Write a JavaScript program to get all the indexes where NaN is found in a given array of numbers and NaN.
+
+// Test Data :
+// ([2, NaN, 8, 16, 32]) -> [1]
+// ([2, 4, NaN, 16, 32, NaN]) -> [2,5]
+// ([2, 4, 16, 32]) ->[]
+// Expected Output:
+// Original array: 2,NaN,8,16,32
+// Find all indexes of NaN of the said array: 1
+// Original array: 2,4,NaN,16,32,NaN
+// Find all indexes of NaN of the said array: 2,5
+// Original array: 2,4,16,32
+// Find all indexes of NaN of the said array:
+
+
+function getNaNCount(arr) {
+    // [2, NaN, 8, 16, 32] 
+    return arr.map((a, i) => {
+        if (isNaN(a)) {
+            return i
+        }
+        return -1
+    }).filter(elm => elm != -1)
+
+
+}
+
+console.log(getNaNCount([2, NaN, 8, 16, 32]))
+console.log(getNaNCount([2, 4, NaN, 16, 32, NaN]))
+console.log(getNaNCount([2, 4, 16, 32]))
+
