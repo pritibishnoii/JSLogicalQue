@@ -531,16 +531,16 @@ console.log(U([1, 2, 3], [100, 2, 1, 10]))
 // set([1, 2, 3])   set( [100, 2, 1, 10])
 
 function findDifArr(arr1, arr2) {
-    let flatArr1= arr1.flat(Infinity)
-    let flatArr2= arr2.flat(Infinity)
+    let flatArr1 = arr1.flat(Infinity)
+    let flatArr2 = arr2.flat(Infinity)
     console.log(flatArr1)
     console.log(flatArr2)
-     let frist =flatArr1.filter(elm=>!flatArr2.includes(elm))      // [3]
-     let second= flatArr2.filter(elm=>!flatArr1.includes(elm))   //[100,10]
-     return [...frist, ...second]             
+    let frist = flatArr1.filter(elm => !flatArr2.includes(elm))      // [3]
+    let second = flatArr2.filter(elm => !flatArr1.includes(elm))   //[100,10]
+    return [...frist, ...second]
 }
 console.log(findDifArr([1, 2, 3], [100, 2, 1, 10]))
-console.log(findDifArr([1, 2, 3, 4, 5], [1, [2], [3, [[4]]],[5,6]]))
+console.log(findDifArr([1, 2, 3, 4, 5], [1, [2], [3, [[4]]], [5, 6]]))
 
 
 
@@ -548,26 +548,26 @@ console.log(findDifArr([1, 2, 3, 4, 5], [1, [2], [3, [[4]]],[5,6]]))
 //     // Flatten arrays to handle nested arrays
 //     let flatArr1 = arr1.flat(Infinity);
 //     let flatArr2 = arr2.flat(Infinity);
-  
+
 //     // Convert arrays to Sets for fast lookup
 //     let set1 = new Set(flatArr1);
 //     let set2 = new Set(flatArr2);
-  
+
 //     // Find difference: items in set1 but not in set2
 //     let diff1 = [...set1].filter(item => !set2.has(item));
-  
+
 //     // Find difference: items in set2 but not in set1
 //     let diff2 = [...set2].filter(item => !set1.has(item));
-  
+
 //     // Combine both differences
 //     return [...diff1, ...diff2];
 //   }
-  
+
 //   // Test cases:
 //   console.log(findDifArr([1, 2, 3], [100, 2, 1, 10])); // ["3", "100", "10"]
 //   console.log(findDifArr([1, 2, 3, 4, 5], [1, [2], [3, [[4]]], [5, 6]])); // ["6"]
 //   console.log(findDifArr([1, 2, 3], [100, 2, 1, 10])); // ["3", "100", "10"]
-  
+
 
 
 
@@ -575,6 +575,61 @@ console.log(findDifArr([1, 2, 3, 4, 5], [1, [2], [3, [[4]]],[5,6]]))
 // todo 24. Write a JavaScript function to remove. 'null', '0', '""', 'false', 'undefined' and 'NaN' values from an array.
 // Sample array : [NaN, 0, 15, false, -22, '',undefined, 47, null]
 // Expected result : [15, -22, 47]
+
+let falsyVal = [NaN, false, undefined, '', null, 0];
+
+const arrayy = [NaN, 0, 15, false, -22, '', undefined, 47, null];
+function removeFalsyVal(arr) {
+    // return arr.filter(elm=>!falsyVal.includes(elm))
+    return arr.filter(elm => Boolean(elm))
+}
+console.log(removeFalsyVal(arrayy))
+
+
+
+
+//todo  25. Write a JavaScript function to sort the following array of objects by title value.
+// Sample object :
+
+// var library = [ 
+//    { author: 'Bill Gates', title: 'The Road Ahead', libraryID: 1254},
+//    { author: 'Steve Jobs', title: 'Walter Isaacson', libraryID: 4264},
+//    { author: 'Suzanne Collins', title: 'Mockingjay: The Final Book of The Hunger Games', libraryID: 3245}
+//    ];
+// Expected result :
+
+// [[object Object] {
+//   author: "Suzanne Collins",f
+//   libraryID: 3245,
+//   title:"Mockingjay:The Final Book of The Hunger Games"
+// }, [object Object] {
+//   author: "Bill Gates",
+//   libraryID: 1254,
+//   title: "The Road Ahead"
+// }, [object Object] {
+//   author: "Steve Jobs",
+//   libraryID: 4264,
+//   title: "Walter Isaacson"
+// }]
+var library = [
+    { author: 'Bill Gates', title: 'The Road Ahead', libraryID: 1254 },
+    { author: 'Steve Jobs', title: 'Walter Isaacson', libraryID: 4264 },
+    { author: 'Suzanne Collins', title: 'Mockingjay: The Final Book of The Hunger Games', libraryID: 3245 }
+];
+
+const filterObject = (arr) => {
+    return arr.sort((a, b) => a.title.localeCompare(b.title))
+
+
+}
+console.log(filterObject(library))
+
+
+
+
+
+
+
 
 // todo 26. Write a JavaScript program to find a pair of elements (indices of the two numbers) in a given array whose sum equals a specific target number.
 
@@ -599,6 +654,111 @@ console.log(tg([10, 20, 10, 40, 50, 60, 70], 50))
 // Sample array : [NaN, 0, 15, false, -22, '',undefined, 47, null]
 // Expected result : [15, -22, 47]
 
+const fun = (arr) => {
+    return arr.filter(elm => Boolean(elm))
+}
+
+console.log(fun([NaN, 0, 15, false, -22, '', undefined, 47, null]))
+
+
+
+
+//todo  28. Write a JavaScript function to find the longest common starting substring in a set of strings.
+
+// Sample array : console.log(longest_common_starting_substring(['go', 'google']));
+// Expected result : "go"
+
+
+// todo 29. Write a JavaScript function to fill an array with values (numeric, string with one character) within supplied bounds.
+
+// Test Data :
+// console.log(num_string_range('a', "z", 2));
+// ["a", "c", "e", "g", "i", "k", "m", "o", "q", "s", "u", "w", "y"]
+
+
+
+
+
+// 30. Write a JavaScript function that merges two arrays and removes all duplicate elements.
+
+// Test data :
+var arr1 = [1, 2, 3];
+var arr2 = [2, 30, 1];
+// console.log(merge_array(array1, array2));
+// [3, 2, 30, 1]
+
+let mergeArr = [...new Set([...arr1, ...arr2])]
+console.log(mergeArr)
+
+
+
+
+
+
+// todo 31. Write a JavaScript function to remove a specific element from an array.
+
+// Test data :
+// console.log(remove_array_element([2, 5, 9, 6], 5));
+// [2, 9, 6]
+
+
+function removeElm(arr, n) {
+    let index = arr.indexOf(n)  // 1    
+    // return   arr.slice(0,index).concat(arr.slice(index+1))  // arr[2]      - > index+1-1+1- >2,... [9,6 ]
+
+    // splice()
+    // return arr.splice(0,index).concat(arr.slice(index))
+    return arr.filter(elm => elm !== n)
+
+
+}
+console.log(removeElm([2, 5, 9, 6], 5))
+
+
+
+
+
+//todo  32. Write a JavaScript function to find an array containing a specific element.
+
+// Test data :
+// arr = [2, 5, 9, 6];
+// console.log(contains(arr, 5));
+// [True]
+
+
+function findSpElm(arr, elm) {
+    return arr.includes(elm)
+
+
+    // for(let i=0;i<arr.length;i++){
+    //     if(arr[i]==elm){
+    //         return true
+    //     }
+    //     return false
+    // }
+
+}
+console.log(findSpElm([2, 5, 9, 6], 5))
+console.log(findSpElm([2, 5, 9, 6], 8))
+
+
+
+
+
+
+// 33. Write a JavaScript script to empty an array while keeping the original.
+
+const card = [2, 5, 9, 6]
+console.log(card)
+card.length = 0
+console.log(card)
+
+
+//todo  34. Write a JavaScript function to get the nth largest element from an unsorted array.
+
+// Test Data :
+// console.log(nthlargest([ 43, 56, 23, 89, 88, 90, 99, 652], 4));
+// 89
 
 
 
@@ -608,6 +768,91 @@ console.log(tg([10, 20, 10, 40, 50, 60, 70], 50))
 
 
 
+
+
+// todo 35. Write a JavaScript function to get random items from an array.
+const product = ['mobile','laptop','iphone','tablet','tv'];
+
+function randomItem(arr){
+    let randomNum= Math.floor(Math.random()*arr.length)
+    console.log(arr[randomNum])
+    return arr[randomItem]
+}
+
+console.log(randomItem(product))
+
+
+
+
+
+// todo 36. Write a JavaScript function to create a specified number of elements with a pre-filled numeric value array.
+
+// Test Data :
+// console.log(array_filled(6, 0));
+// [0, 0, 0, 0, 0, 0]
+// console.log(array_filled(4, 11));
+// [11, 11, 11, 11]
+
+
+function myArr(arr,n){
+    return new Array(arr).fill(n)
+}
+console.log(myArr(6,0))
+console.log(myArr(4,11))
+
+
+
+
+// todo 37. Write a JavaScript function to create a specified number of elements with a pre-filled string value array.
+
+// Test Data :
+// console.log(array_filled(3, 'default value'));
+// ["default value", "default value", "default value"]
+// console.log(array_filled(4, 'password'));
+// ["password", "password", "password", "password"]
+console.log(myArr(4,"password"))
+
+
+
+//todo  38. Write a JavaScript function to move an array element from one position to another.
+
+// Test Data :
+// console.log(move([10, 20, 30, 40, 50], 0, 2));
+// [20, 30, 10, 40, 50]
+// console.log(move([10, 20, 30, 40, 50], -1, -2));
+// [10, 20, 30, 50, 40]
+
+
+
+
+
+
+
+
+
+// todo 39. Write a JavaScript function to filter false, null, 0 and blank values from an array.
+
+// Test Data :
+// console.log(filter_array_values([58, '', 'abcd', true, null, false, 0]));
+// [58, "abcd", true]
+
+function removeaFalsy(arr){
+    return arr.filter(elm=>Boolean(elm))
+}
+
+console.log(removeaFalsy([58, '', 'abcd', true, null, false, 0]))
+
+
+
+
+
+// todo 40. Write a JavaScript function to generate an array of integer numbers, increasing one from the starting position, of a specified length.
+
+// Test Data :
+// console.log(array_range(1, 4));
+// [1, 2, 3, 4]
+// console.log(array_range(-6, 4));
+// [-6, -5, -4, -3]
 
 
 
