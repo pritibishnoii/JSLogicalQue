@@ -169,10 +169,7 @@ for(let i=0;i<str.length;i++){
 }
 console.log(subset)
 
-
-
-
-//todo  8. Write a JavaScript program to create a clock.
+// 8. Write a JavaScript program to create a clock.
 // Note: The output will come every second.
 // Expected Console Output :
 // "14:37:42"
@@ -181,3 +178,22 @@ console.log(subset)
 // "14:37:45"
 // "14:37:46"
 // "14:37:47"
+function startClock() {
+       
+
+    setInterval(() => {
+       
+      const date = new Date();
+      let hours = String(date.getHours())
+      let minutes = String(date.getMinutes())
+      let seconds = String(date.getSeconds())
+      let clockElement= document.createElement('div')
+      clockElement.setAttribute('id','clock')
+     console.log(clockElement)
+      clockElement.innerText += `${hours}:${minutes}:${seconds}`;
+      document.body.appendChild(clockElement)
+    }, 1000);
+  }
+
+  // Start the clock
+  startClock();

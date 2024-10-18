@@ -281,9 +281,7 @@ var aar = [
 
 
 for (let i = 0; i < aar.length; i++) {
-    console.log(`row ${i}`)
     for (j = 0; j < aar[i].length; j++) {
-        console.log(` ${aar[i][j]}`);
     }
 
 
@@ -359,7 +357,6 @@ function num(n) {
 }
 color.forEach((clr, index) => {
     let position = index + 1;
-    console.log(`${position}${num(position)} choice is ${clr}`)
 })
 
 // console.log(num(1))
@@ -465,7 +462,6 @@ function findDuplicates(arr) {
 // Example usage:
 let a = [1, 2, 3, 4, 2, 5, 6, 3, 7, 8, 1];
 let duplicateValues = findDuplicates(a);
-console.log("Duplicates:", duplicateValues);
 
 
 
@@ -533,8 +529,8 @@ console.log(U([1, 2, 3], [100, 2, 1, 10]))
 function findDifArr(arr1, arr2) {
     let flatArr1 = arr1.flat(Infinity)
     let flatArr2 = arr2.flat(Infinity)
-    console.log(flatArr1)
-    console.log(flatArr2)
+    // console.log(flatArr1)
+    // console.log(flatArr2)
     let frist = flatArr1.filter(elm => !flatArr2.includes(elm))      // [3]
     let second = flatArr2.filter(elm => !flatArr1.includes(elm))   //[100,10]
     return [...frist, ...second]
@@ -678,6 +674,22 @@ console.log(fun([NaN, 0, 15, false, -22, '', undefined, 47, null]))
 
 
 
+function num_string_range(start, end, step) {
+    let s = start.charCodeAt()
+    let e = end.charCodeAt()
+    let arr = []
+    for (let i = s; i < e; i += step) {      //     97+2 99     99+2-101  101+2-> 103 ...... 
+        console.log(i)
+        arr.push(String.fromCharCode(i))
+        console.log(String.fromCharCode(i))
+
+    }
+    return arr
+
+}
+console.log(num_string_range('a', 'z', 2))
+
+
 
 // 30. Write a JavaScript function that merges two arrays and removes all duplicate elements.
 
@@ -760,10 +772,14 @@ console.log(card)
 // console.log(nthlargest([ 43, 56, 23, 89, 88, 90, 99, 652], 4));
 // 89
 
+function nthlargest(arr, pos) {
+    return arr.sort((a, b) => b - a)[pos - 1]
 
+}
+console.log(nthlargest([43, 56, 23, 89, 88, 90, 99, 652], 4))
 
-
-
+console.log(nthlargest([43, 56, 23, 89, 88, 90, 99, 652], 2));
+console.log(nthlargest([43, 56, 23, 89, 88, 90, 99, 652], 1));
 
 
 
@@ -771,10 +787,10 @@ console.log(card)
 
 
 // todo 35. Write a JavaScript function to get random items from an array.
-const product = ['mobile','laptop','iphone','tablet','tv'];
+const product = ['mobile', 'laptop', 'iphone', 'tablet', 'tv'];
 
-function randomItem(arr){
-    let randomNum= Math.floor(Math.random()*arr.length)
+function randomItem(arr) {
+    let randomNum = Math.floor(Math.random() * arr.length)
     console.log(arr[randomNum])
     return arr[randomItem]
 }
@@ -794,11 +810,11 @@ console.log(randomItem(product))
 // [11, 11, 11, 11]
 
 
-function myArr(arr,n){
-    return new Array(arr).fill(n)
+function myArr(len, elm) {
+    return new Array(len).fill(elm)
 }
-console.log(myArr(6,0))
-console.log(myArr(4,11))
+console.log(myArr(6, 0))
+console.log(myArr(4, 11))
 
 
 
@@ -810,7 +826,7 @@ console.log(myArr(4,11))
 // ["default value", "default value", "default value"]
 // console.log(array_filled(4, 'password'));
 // ["password", "password", "password", "password"]
-console.log(myArr(4,"password"))
+console.log(myArr(4, "password"))
 
 
 
@@ -825,7 +841,26 @@ console.log(myArr(4,"password"))
 
 
 
+function move(arr, s, e) {
+    let n = arr.length
+    if (s < 0) s += n;       // 5     
+    if (e < 0) e += n;       // 5
 
+    const removedElem = arr.splice(s, 1)   // s=0 1 10    [50] [10]
+    console.log(arr)
+    arr.splice(e, 0, ...removedElem)
+    console.log(arr)
+    // splice(e, 0, removedElem[0])   
+
+    return removedElem
+
+}
+
+
+
+
+console.log(move([10, 20, 30, 40, 50], 0, 2))
+console.log(move([10, 20, 30, 40, 50], -1, -2))
 
 
 
@@ -836,8 +871,8 @@ console.log(myArr(4,"password"))
 // console.log(filter_array_values([58, '', 'abcd', true, null, false, 0]));
 // [58, "abcd", true]
 
-function removeaFalsy(arr){
-    return arr.filter(elm=>Boolean(elm))
+function removeaFalsy(arr) {
+    return arr.filter(elm => Boolean(elm))
 }
 
 console.log(removeaFalsy([58, '', 'abcd', true, null, false, 0]))
@@ -852,8 +887,261 @@ console.log(removeaFalsy([58, '', 'abcd', true, null, false, 0]))
 // console.log(array_range(1, 4));
 // [1, 2, 3, 4]
 // console.log(array_range(-6, 4));
-// [-6, -5, -4, -3]
+// [-6, -5, -4, -3]             
 
+function array_range(start, len) {
+    // let arr=[]
+    let arr = new Array()
+    for (let i = 0; i < len; i++) {    // i-> 0,1,2,3
+        arr.push(start + i)       //[].push(1+0) --- > [1]  --> [1,].push(1+1)-->2=]--> [1,2] --> [1,2].push(1+2)=3--> [1,2,3] --> [1,2,3].push(1+3)-4->[1,2,3,4]
+    }
+    return arr
+}
+
+
+function array_range(start, len) {
+    let arr = new Array(len)         //create arr of  4 
+    // console.log(arr)
+    for (let i = 0; i < len; i++, start++) {    //start= 1 -->++ 2 ++3 ++4 
+        arr[i] = start;
+    }
+    return arr
+
+}
+
+console.log(array_range(1, 4))
+console.log(array_range(-6, 4));
+
+
+
+// todo 41. Write a JavaScript function to generate an array between two integers of 1 step length.
+
+// Test Data :
+// console.log(rangeBetwee(4, 7));
+// [4, 5, 6, 7]
+// console.log(rangeBetwee(-4, 7));
+// [-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
+function arrayRange(start, len) {
+    //
+    let result = []
+    for (let i = start; i <= len; i++) {
+        result.push(i)
+    }
+    return result
+}
+console.log(arrayRange(4, 7))
+console.log(arrayRange(-4, 7))
+
+
+
+
+
+
+// todo 42. Write a JavaScript function to find unique elements in two arrays.
+
+// Test Data :
+// console.log(difference([1, 2, 3], [100, 2, 1, 10]));
+// ["1", "2", "3", "10", "100"]
+// console.log(difference([1, 2, 3, 4, 5], [1, [2], [3, [[4]]],[5,6]]));
+// ["1", "2", "3", "4", "5", "6"]
+// console.log(difference([1, 2, 3], [100, 2, 1, 10]));
+// ["1", "2", "3", "10", "100"]
+// Click me to see the solution
+
+function difference(a1, a2) {
+
+    a1 = a1.flat(Infinity)
+    a2 = a2.flat(Infinity)
+    return [...new Set([...a2, ...a1])].sort((a, b) => a - b)
+
+}
+console.log(difference([1, 2, 3], [100, 2, 1, 10]))
+console.log(difference([1, 2, 3, 4, 5], [1, [2], [3, [[4]]], [5, 6]]))
+
+
+
+
+
+//  todo 43. Write a JavaScript function to create an array of arrays, ungrouping the elements in an array produced by zip.
+
+// Test Data :
+// unzip([['a', 1, true], ['b', 2, false]])
+// unzip([['a', 1, true], ['b', 2]])
+// Expected Output:
+// [["a","b"],[1,2],[true,false]]
+// [["a","b"],[1,2],[true]]
+
+function unzip(arr) {
+    //  
+
+    let result = [];
+
+    // Iterate over each sub-array
+    for (let i = 0; i < arr[0].length; i++) {
+        // 0,1,2 ---3 len=3 
+
+        result.push(arr.map(subArray => subArray[i])); // Create new arrays for each "column" 
+        // 
+        //   return arr[0].map((_, i) => arr.map(subArray => subArray[i]));
+
+        //   return arr[0].map((_,i)=>arr.map(elm=>elm[i]))
+    }
+
+    return result;
+
+    // let result = []
+    // let res1=[]
+    // let res2=[]
+    // let res3= []
+    // for(let i=0;i<arr.length;i++){
+    //   res1.push(arr[i][0])
+    //   res2.push(arr[i][1])
+    //   res3.push(arr[i][2])
+    //   result = [res1,res2,res3] 
+    // }
+
+    // return result
+
+}
+console.log(unzip([['a', 1, true], ['b', 2, false]]))
+
+
+
+//todo  48. Write a JavaScript program that takes an array of integers and returns false if every number is not prime. Otherwise, return true.
+
+// Test Data :
+// ([2,3,5,7]) -> true
+// ([2,3,5,7,8]) -> false
+// Expected Output:
+// Original array of integers: 2,3,5,7
+// In the said array check every numbers are prime or not! true
+// Original array of integers: 2,3,5,7,8
+// In the said array check every numbers are prime or not! false
+
+function checkPrime(arr) {
+
+    const isPrime = (num) => {
+        if (num < 1) return false;
+        // console.log(Math.sqrt(num))
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % 2 == 0) {
+                return false
+            }
+        }
+        return true
+    }
+    let allPrime = arr.every(isPrime)
+    console.log(allPrime)
+    return allPrime
+
+
+}
+console.log(checkPrime([2, 3, 5, 7]))
+console.log(checkPrime([2, 3, 5, 7, 8]))
+
+
+
+
+
+
+//  todo 49. Write a JavaScript program that takes an array of numbers and returns the third smallest number.
+
+// Test Data :
+// (2,3,5,7,1) -> 3
+// (2,3,0,5,7,8,-2,-4) -> 0
+// Expected Output:
+// Original array of numbers: 2,3,5,7,1
+// Third smallest number of the said array of numbers: 3
+// Original array of numbers: 2,3,0,5,7,8,-2,-4
+// Third smallest number of the said array of numbers: 0
+
+
+
+function nthSmallestElm(arr) {
+    return arr.sort((a, b) => b - a)[arr.length - 3]
+    return arr.sort((a, b) => a - b)[2]
+
+}
+console.log(nthSmallestElm([2, 3, 5, 7, 1]))
+console.log(nthSmallestElm([2, 3, 0, 5, 7, 8, -2, -4]))
+
+
+
+
+
+
+// todo 50. Write a JavaScript program that takes an array with mixed data type and calculates the sum of all numbers.
+
+// Test Data :
+// ([2, "11", 3, "a2", false, 5, 7, 1]) -> 18
+// ([2, 3, 0, 5, 7, 8, true, false]) -> 25
+// Expected Output:
+// Original array: 2,11,3,a2,false,5,7,1
+// Sum all numbers of the said array: 18
+// Original array: 2,3,0,5,7,8,true,false
+// Sum all numbers of the said array: 25
+
+function calculatesSum(arr) {
+    return arr.filter(num => typeof num == "number").reduce((sum, num) => sum += num, 0)
+    let sum = 0
+    for (let i = 0; i < arr.length; i++) {
+        if (typeof arr[i] == "number") {
+            sum += arr[i]
+        }
+    }
+    return sum
+
+
+}
+console.log(calculatesSum([2, "11", 3, "a2", false, 5, 7, 1]))
+
+
+
+
+
+
+// todo 51. Write a JavaScript program to check if an array is a factor chain or not.
+
+// A factor chain is an array in which the previous element is a factor of the next consecutive element. The following is a factor chain:
+// [2, 4, 8, 16, 32]
+// // 2 is a factor of 4
+// // 4 is a factor of 8
+// // 8 is a factor of 16
+// // 16 is a factor of 32
+
+// Test Data :
+// ([2, 4, 8, 16, 32]) -> true
+// ([2, 4, 16, 32, 64]) -> true
+// ([2, 4, 16, 32, 68]) -> false
+// Expected Output:
+// Original array:
+// Check the said array is a factor chain or not?
+// true
+// Original array:
+// Check the said array is a factor chain or not?
+// true
+// Original array:
+// Check the said array is a factor chain or not?
+// false
+
+
+
+function checkFactor(arr) {
+    return arr.every((num, index) => {
+        if (index === 0) return true; // Skip the first element
+        return num % arr[index - 1] === 0; // Check if the current number is divisible by the previous one
+      });
+
+
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i + 1] % arr[i] !== 0) {
+            return false
+        }
+    }
+    return true
+}
+console.log(checkFactor([2, 4, 8, 16, 32]))
+console.log(checkFactor([2, 4, 16, 32, 68]))
 
 
 //todo  53. Write a JavaScript program to count the number of arrays inside a given array.
@@ -913,4 +1201,20 @@ function getNaNCount(arr) {
 console.log(getNaNCount([2, NaN, 8, 16, 32]))
 console.log(getNaNCount([2, 4, NaN, 16, 32, NaN]))
 console.log(getNaNCount([2, 4, 16, 32]))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
