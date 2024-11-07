@@ -1215,6 +1215,29 @@ console.log(getNaNCount([2, 4, 16, 32]))
 
 
 
+function isArraySorted(arr){
+
+    //    step1 - visit all the arr element 
+    // step 2- check each element  if the prev eleme is smaller than current elemnt  ex- 1<2 true  2<3  5<4 false  
+
+    for(let i=0;i<arr.length;i++){
+      for(let j=i+1;j<arr.length;j++){
+        if(arr[j]<arr[i]){
+            return false
+        }
+      }
+    }
+    return true
+
+}
+// N = 5, array[] = {1,2,3,4,5}
+// {5,4,6,7,8}
+console.log(isArraySorted([1,2,3,4,5]))
+console.log(isArraySorted([5,4,6,7,8]))
+
+
+
+
 
 
 

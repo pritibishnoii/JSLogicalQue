@@ -185,15 +185,15 @@ console.log(camelize("JavaScript exercises"))
 // "hello_world"
 
 
-function uncamelize(str,seprator=' '){
+function uncamelize(str, seprator = ' ') {
 
-        // if(str)return str
-        return str.split(/(?=[A-Z])/).join(seprator).toLowerCase()
-  
+    // if(str)return str
+    return str.split(/(?=[A-Z])/).join(seprator).toLowerCase()
+
 
 }
 console.log(uncamelize('helloWorld'))
-console.log(uncamelize('helloWorld','-'))
+console.log(uncamelize('helloWorld', '-'))
 
 
 
@@ -208,17 +208,17 @@ console.log(uncamelize('helloWorld','-'))
 // "Ha!Ha!Ha!"
 
 
-function repeat(str,count){
-        if(count==undefined) return str;
+function repeat(str, count) {
+    if (count == undefined) return str;
 
-        return str.repeat(count)
+    return str.repeat(count)
 
 }
 console.log(repeat("Ha!"))
-console.log(repeat("Ha!",2))
-console.log(repeat("Ha!",3))
-console.log(repeat("Ha!",4))
-console.log(repeat("Ha!",7))
+console.log(repeat("Ha!", 2))
+console.log(repeat("Ha!", 3))
+console.log(repeat("Ha!", 4))
+console.log(repeat("Ha!", 7))
 
 
 
@@ -232,17 +232,168 @@ console.log(repeat("Ha!",7))
 // "We are doing some JavaScript exercises."
 
 
-function insert(str,addstr,pos){
+function insert(str, addstr, pos) {
     if (pos === undefined) {
         pos = 0; // If pos is undefined, default to the beginning of the string
     }
-    if(addstr==undefined){
-        addstr =''
+    if (addstr == undefined) {
+        addstr = ''
     }
     // Insert `addstr` into `str` at the given `pos`
-    return str.slice(0, pos) + addstr +" " + str.slice(pos); 
+    return str.slice(0, pos) + addstr + " " + str.slice(pos);
 
 }
 console.log(insert('We are doing some exercises.'))
-console.log(insert('We are doing some exercises.','javascript'))
-console.log(insert('We are doing some exercises.','javascript',18))
+console.log(insert('We are doing some exercises.', 'javascript'))
+console.log(insert('We are doing some exercises.', 'javascript', 18))
+
+
+
+
+//todo  15. Write a JavaScript function that format a number in a human-readable string with the correct suffix, such as 1st, 2nd, 3rd, etc.
+// Test Data :
+// console.log(humanize_format());
+// console.log(humanize_format(1));
+// console.log(humanize_format(8));
+// console.log(humanize_format(301));
+// console.log(humanize_format(402));
+// "1st"
+// "8th"
+// "301st"
+// "402nd"
+
+
+
+
+
+function humanize_format(num) {
+    if (typeof (num) == 'undefined') return;
+
+    if (num % 10 >= 11 && num % 100 <= 13) return num + 'th'
+    switch (num % 10) {
+        case 1: return num + 'st'
+        case 2: return num + 'nd'
+        case 3: return num + 'rd'
+    }
+    return num + 'th'
+
+}
+console.log(humanize_format(1))
+console.log(humanize_format(8))
+console.log(humanize_format(301))  // 301 %10 1 st   301%100  3011%100 - 11th
+console.log(humanize_format(402))      //402%10 2nd 
+console.log(humanize_format())
+
+
+
+
+
+
+
+
+// todo 16. Write a JavaScript function to truncate a string if it is longer than the specified number of characters. Truncated strings will end with a translatable ellipsis sequence ("...") (by default) or specified characters.
+// Test Data :
+// console.log(text_truncate('We are doing JS string exercises.'))
+// console.log(text_truncate('We are doing JS string exercises.',19))
+// console.log(text_truncate('We are doing JS string exercises.',15,'!!'))
+// "We are doing JS string exercises."
+// "We are doing JS ..."
+// "We are doing !!"
+
+
+function text_truncate(str, pos, char) {
+    if (pos == null) pos = 100
+    if (char == null) char = "..."
+    // return str.slice(0,pos-char.length)+  char;
+    return str.substring(0, pos - char.length) + char
+
+
+}
+console.log(text_truncate("We are doing JS string exercises."))
+console.log(text_truncate("We are doing JS string exercises.", 19))
+console.log(text_truncate("We are doing JS string exercises.", 15, '!!'))
+
+
+
+
+
+// todo 17. Write a JavaScript function to chop a string into chunks of a given length.
+// Test Data :
+// console.log(string_chop('w3resource'));
+// console.log(string_chop('w3resource',2));
+// console.log(string_chop('w3resource',3));
+// ["w3resource"]
+// ["w3", "re", "so", "ur", "ce"]
+// ["w3r", "eso", "urc", "e"]
+
+
+function string_chop(str, chunkSize) {
+    if (chunkSize === undefined) {
+        return [str]; // Return the whole string as an array if no chunk size is provided
+    }
+    let result = [];
+    for (let i = 0; i < str.length; i += chunkSize) {
+        result.push(str.slice(i,i+chunkSize))     //    
+    }
+    return result
+}
+console.log(string_chop('w3resource'))
+console.log(string_chop('w3resource', 2))
+console.log(string_chop('w3resource', 3))
+
+
+//todo  18. Write a JavaScript function to count substrings in a string.
+// Test Data :
+// console.log(count("The quick brown fox jumps over the lazy dog", 'the'));
+// Output :
+// 2
+// console.log(count("The quick brown fox jumps over the lazy dog", 'fox',false));
+// Output :
+// 1
+
+
+
+
+
+
+
+
+
+// Return the index of sentences that contain maximum number of alphabet 'a' in single sentence    input sentence=["ananya loves sharpener","apple is a very healthy fruit","this is great thanks very much " ] output is count 4 .   Explanation ananya loves sharperner -a count -4 . apple is very healthy fruit -a count --3. this is great thanks very much     a count--2  maximum is 4 for the string having index 0  
+
+
+
+const sentences = [
+    "ananya loves sharpener",
+    "apple is a very healthy fruit",
+    "this is great thanks very much"
+  ];
+  
+  function countStringMax(sentences) {
+    let maxCount = 0;
+    let maxIndex = -1;
+  
+    // Loop through each sentence
+    sentences.forEach((sentence, index) => {
+      let count = 0;
+  
+      // Count the occurrences of 'a' in the current sentence
+      sentence.split("").forEach(char => {
+        if (char.toLowerCase() === 'a') {
+          count++;
+        }
+      });
+  
+      // Check if this count is greater than the current maxCount
+      if (count > maxCount) {
+        maxCount = count;
+        maxIndex = index;
+      }
+    });
+ 
+    return { maxIndex, maxCount };
+  }
+  
+console.log(countStringMax(sentences))
+//   console.log(`Maximum 'a' count is ${result.maxCount} at index ${result.maxIndex}`);
+  
