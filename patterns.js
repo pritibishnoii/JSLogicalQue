@@ -243,3 +243,135 @@ for(let i=5;i>0;i--){
           }
           console.log(row)
         }
+
+
+
+
+
+        // 1
+        // 01
+        // 101
+        // 0101
+        // 10101
+
+
+
+// i=0    
+// Row 1 (i = 0): Adds i+j%2==0?1:0 →  0+0%2==0->true  Prints "1".
+// Row 2 (i = 1): Adds i+j%2==0?1:0 ->1+0%2==0-false  → Prints "0".
+// Row 2 (i = 1): Adds i+j%2==0?1:0 ->1+1%2==0->true  → Prints "01".
+// Row 3 (i = 2): Adds i+j%2==0?1:0 ->2+0%2==0->true  →→ Prints "1".
+// Row 3 (i = 2): Adds i+j%2==0?1:0 ->2+1%2==0->false  →→ Prints "10".
+// Row 3 (i = 2): Adds i+j%2==0?1:0 ->2+1%==0->false  →→ Prints "10".
+// Row 4 (i = 3): Adds 0101 → Prints "0101".
+// Row 5 (i = 4): Adds 10101 → Prints "10101".
+      
+// j=0
+for(let i=0;i<N;i++){
+  let row="";
+  for(let j=0;j<i+1;j++){
+    row+=(i+j)%2===0? "1":"0"      
+  }
+  console.log(row)
+}
+// console.log(0%2)
+console.log(1%2)
+
+
+
+// 1          1
+// 12        21
+// 123      321
+// 1234    4321
+// 12345  54321
+// 123456654321
+
+
+
+let spaces = 2 * (N - 1)
+for (let i = 1; i <= N; i++) {
+  let row = ""; 
+  for (let j = 1; j <= i; j++) {
+    row += j;
+  }
+  for (let j = 1; j <= spaces; j++) {
+    row += " ";
+  }
+  for (let j = i; j >= 1; j--) {
+    row += j;
+  }
+  console.log(row); 
+  spaces -= 2;
+}
+
+
+
+
+// 1
+// 23
+// 456
+// 78910
+// 1112131415
+let num=1
+for(let i=1;i<N;i++){
+  let row="";
+
+  for(let j=1;j<=i;j++){
+   row+=num;        // 1        2 3     
+   num=num+1            //1+1 -2     2+1 -3 
+  }
+  console.log(row)
+}
+
+
+
+// A
+// AB 
+// ABC 
+// ABCD
+
+for(let i=1;i<=N;i++){
+  let row="";
+  for(let j=1;j<=i;j++){
+    row+=String.fromCharCode(64+j)
+  }
+ 
+  console.log(row)
+}
+
+
+// ABCDEF
+// ABCDE
+// ABCD
+// ABC 
+// AB 
+// A 
+
+
+for(let i=N;i>=0;i--){
+  let row="";
+  for(let j=1;j<=i;j++){
+    row+=String.fromCharCode(64+j)
+  }
+ 
+  console.log(row)
+
+}
+
+// A 
+// BB 
+// CCC  
+// DDDD 
+// EEEEE
+ // Number of rows
+let charCode = 'A'.charCodeAt(0); // Starting ASCII code for 'A'
+console.log(charCode)
+for (let i = 1; i <= N; i++) {
+  let row = ""; 
+  for (let j = 1; j <= i; j++) {
+    row += String.fromCharCode(charCode); 
+  }
+  console.log(row); 
+
+  charCode += 1; 
+}
